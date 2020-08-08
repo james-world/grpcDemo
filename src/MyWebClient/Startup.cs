@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MyService;
+using MyWebClient.Configuration;
 
 namespace MyWebClient
 {
@@ -34,6 +36,7 @@ namespace MyWebClient
                 .AddGrpcClient<Greeter.GreeterClient>(o => o.Address = new Uri(greeterClientAddress));
 
             services.AddApplicationInsightsTelemetry();
+            services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

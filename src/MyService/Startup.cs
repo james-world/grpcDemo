@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyService.Configuration;
 using Prometheus;
 
 namespace MyService
@@ -19,6 +21,7 @@ namespace MyService
         {
             services.AddGrpc();
             services.AddApplicationInsightsTelemetry();
+            services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
