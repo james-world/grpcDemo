@@ -32,6 +32,8 @@ namespace MyWebClient
             var greeterClientAddress = Configuration.GetValue<string>("MyService:Url");
             services
                 .AddGrpcClient<Greeter.GreeterClient>(o => o.Address = new Uri(greeterClientAddress));
+
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

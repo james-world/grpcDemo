@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="3.6.0" />
     <PackageReference Include="prometheus-net.AspNetCore.Grpc" Version="3.6.0" />
   </ItemGroup>

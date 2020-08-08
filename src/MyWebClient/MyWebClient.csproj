@@ -6,6 +6,7 @@
     <PackageReference Include="Google.Protobuf" Version="3.9.1" />
     <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.30.0" />
     <PackageReference Include="Grpc.Tools" Version="2.23.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="..\MyService\Protos\greet.proto" GrpcServices="Client" Link="Protos\greet.proto" />
