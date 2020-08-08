@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Prometheus;
 
 namespace MyService
 {
@@ -28,10 +29,12 @@ namespace MyService
             }
 
             app.UseRouting();
+            app.UseGrpcMetrics();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapMetrics();
 
                 endpoints.MapGet("/", async context =>
                 {
