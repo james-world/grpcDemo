@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MyService;
 
 namespace MyWebClient
 {
@@ -26,6 +28,10 @@ namespace MyWebClient
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            var greeterClientAddress = Configuration.GetValue<string>("MyService:Url");
+            services
+                .AddGrpcClient<Greeter.GreeterClient>(o => o.Address = new Uri(greeterClientAddress));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
